@@ -6,7 +6,7 @@
     <title>图片压缩工具 - 简单易用的在线图片压缩</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- 引入图片压缩库 -->
-    <script defer src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
 </head>
 <body>
     <div class="container">
@@ -69,6 +69,31 @@
         </main>
     </div>
 
-    <script defer src="js/main.js"></script>
+    <!-- 确保在DOM加载完成后再加载主脚本 -->
+    <script>
+        // 检查图片压缩库是否加载成功
+        window.addEventListener('load', function() {
+            if (typeof imageCompression === 'undefined') {
+                console.error('图片压缩库加载失败，正在重新加载...');
+                // 重新加载压缩库
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js';
+                script.onload = function() {
+                    console.log('图片压缩库加载成功');
+                    // 加载主脚本
+                    const mainScript = document.createElement('script');
+                    mainScript.src = 'js/main.js';
+                    document.body.appendChild(mainScript);
+                };
+                document.body.appendChild(script);
+            } else {
+                console.log('图片压缩库已加载');
+                // 直接加载主脚本
+                const mainScript = document.createElement('script');
+                mainScript.src = 'js/main.js';
+                document.body.appendChild(mainScript);
+            }
+        });
+    </script>
 </body>
 </html> 
