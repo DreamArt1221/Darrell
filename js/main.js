@@ -1,5 +1,12 @@
-// 等待DOM加载完成
-document.addEventListener('DOMContentLoaded', function() {
+// 等待DOM和压缩库加载完成
+window.addEventListener('load', function() {
+    // 检查压缩库是否正确加载
+    if (typeof imageCompression === 'undefined') {
+        console.error('图片压缩库未加载，请刷新页面重试');
+        alert('图片压缩库加载失败，请刷新页面重试');
+        return;
+    }
+
     // 获取DOM元素
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('fileInput');
@@ -18,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 显示错误信息
     function showError(message) {
-        console.log('显示错误:', message); // 调试日志
+        console.log('显示错误:', message);
         errorMessage.textContent = message;
         errorMessage.style.display = 'block';
         setTimeout(() => {
@@ -78,12 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 点击上传
     dropZone.addEventListener('click', () => {
-        console.log('点击上传区域'); // 调试日志
+        console.log('点击上传区域');
         fileInput.click();
     });
 
     fileInput.addEventListener('change', (e) => {
-        console.log('文件选择变化'); // 调试日志
+        console.log('文件选择变化');
         const file = e.target.files[0];
         if (validateFile(file)) {
             handleImageUpload(file);
@@ -93,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 处理图片上传
     async function handleImageUpload(file) {
         try {
-            console.log('开始处理图片:', file.name); // 调试日志
+            console.log('开始处理图片:', file.name);
             originalFile = file;
             loadingIndicator.style.display = 'flex';
             downloadBtn.disabled = true;
@@ -129,15 +136,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // 压缩图片
     async function compressImage(file, quality) {
         try {
-            console.log('开始压缩图片，质量:', quality); // 调试日志
+            console.log('开始压缩图片，质量:', quality);
             const options = {
                 maxSizeMB: 1,
                 maxWidthOrHeight: 1920,
                 useWebWorker: true,
-                quality: quality,
-                onProgress: (progress) => {
-                    console.log('压缩进度:', progress);
-                }
+                quality: quality
             };
 
             const compressedFile = await imageCompression(file, options);
@@ -171,5 +175,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     });
 
-    console.log('初始化完成'); // 调试日志
+    console.log('初始化完成');
 }); 
