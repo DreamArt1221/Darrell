@@ -6,7 +6,7 @@
     <title>图片压缩工具 - 简单易用的在线图片压缩</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- 引入图片压缩库 -->
-    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
 </head>
 <body>
     <div class="container">
@@ -24,10 +24,15 @@
                             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
                         </svg>
                         <h2>点击或拖放图片到这里</h2>
-                        <p class="upload-hint">支持 PNG、JPG 等格式</p>
+                        <p class="upload-hint">支持 PNG、JPG 等格式，最大 10MB</p>
+                        <div id="errorMessage" class="error-message" style="display: none;"></div>
+                        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                            <div class="spinner"></div>
+                            <span>正在处理...</span>
+                        </div>
                     </div>
                 </div>
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg" style="display: none;">
             </section>
 
             <!-- 预览区域 -->
@@ -64,6 +69,6 @@
         </main>
     </div>
 
-    <script src="js/main.js"></script>
+    <script defer src="js/main.js"></script>
 </body>
 </html> 

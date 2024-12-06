@@ -78,6 +78,41 @@ header p {
     font-size: 0.9rem;
 }
 
+/* 错误提示样式 */
+.error-message {
+    color: #ff3b30;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #fff2f2;
+    border-radius: 8px;
+    border: 1px solid #ffcdd2;
+}
+
+/* 加载指示器样式 */
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #0071e3;
+    font-size: 0.9rem;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #0071e3;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* 预览区域样式 */
 .preview-section {
     background-color: white;
@@ -102,6 +137,7 @@ header p {
     border-radius: 12px;
     overflow: hidden;
     background-color: #f5f5f7;
+    position: relative;
 }
 
 .image-container img {
@@ -180,6 +216,12 @@ input[type="range"]::-moz-range-thumb:hover {
 .download-button:hover {
     background-color: #0077ed;
     transform: translateY(-1px);
+}
+
+.download-button:disabled {
+    background-color: #d2d2d7;
+    cursor: not-allowed;
+    transform: none;
 }
 
 /* 响应式设计 */
