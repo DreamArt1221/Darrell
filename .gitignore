@@ -1,31 +1,5 @@
-# 操作系统文件
 .DS_Store
-Thumbs.db
-
-# 编辑器文件
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# 依赖目录
 node_modules/
-
-# 日志文件
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# 环境文件
-.env
-.env.local
-.env.*.local
-
-# 构建输出
-dist/
-build/
-
-# 临时文件
-.tmp/
-.temp/ 
+.vscode/
+.idea/ 
